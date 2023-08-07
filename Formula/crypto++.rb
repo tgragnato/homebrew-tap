@@ -2,7 +2,7 @@ class Cryptoxx < Formula
   desc "Free C++ class library of cryptographic schemes"
   homepage "https://cryptopp.com/"
   url "https://github.com/weidai11/cryptopp.git"
-  version "20230226"
+  version "20230807"
   license "BSL-1.0"
 
   def install
