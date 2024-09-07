@@ -6,8 +6,8 @@ class Amule < Formula
   license "GPL-2.0"
 
   depends_on "cmake" => [:build, :test]
-  depends_on "crypto++" => [:build, :test]
   depends_on "gettext" => [:build, :test]
+  depends_on "crypto++"
   depends_on "wxwidgets"
 
   def install
