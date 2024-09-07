@@ -13,4 +13,8 @@ class Terraform < Formula
     ENV["GOPATH"] = buildpath
     system "go", "build", *std_go_args, "-ldflags", "-s -w -X main.version=#{version}", "-o", bin/"terraform", "."
   end
+
+  test do
+    system bin/"terraform", "--help"
+  end
 end
