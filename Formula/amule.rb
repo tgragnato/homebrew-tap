@@ -7,7 +7,7 @@ class Amule < Formula
 
   depends_on "cmake" => [:build, :test]
   depends_on "gettext" => [:build, :test]
-  depends_on "crypto++"
+  depends_on "cryptopp"
   depends_on "wxwidgets"
 
   def install
