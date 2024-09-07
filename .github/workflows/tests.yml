@@ -10,10 +10,9 @@ on:
 jobs:
 
   test-bot:
-    strategy:
-      matrix:
-        os: [ macos-12, macos-13, macos-14, ubuntu-latest ]
-    runs-on: ${{ matrix.os }}
+
+    name: Homebrew Test Bot (Syntax)
+    runs-on: ubuntu-latest
 
     steps:
 
@@ -37,8 +36,60 @@ jobs:
 
       - run: brew test-bot --only-setup
 
-      - run: brew test-bot --only-tap-syntax
+      - name: Test syntax of all formulae
+        run: brew test-bot --only-tap-syntax
 
-      - run: brew test-bot --only-formulae --root-url=https://ghcr.io/v2/tgragnato/tap amule
+  get-formulae:
 
-      - run: brew test-bot --only-formulae --root-url=https://ghcr.io/v2/tgragnato/tap magnetico
+    runs-on: ubuntu-latest
+    outputs:
+      formulae: ${{ steps.get-formulae.outputs.formulae }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Get list of all formulae
+        id: get-formulae
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { execSync } = require('child_process');
+            const formulae = execSync('find Formula -name "*.rb" -exec basename {} .rb \\;')
+              .toString()
+              .trim()
+              .split('\n');
+            const formulaeJson = JSON.stringify(formulae);
+            core.setOutput('formulae', formulaeJson);
+
+  test-formulae:
+
+    name: Homebrew Test Bot (Formulae)
+    needs: [test-bot, get-formulae]
+    if: success()
+    strategy:
+      matrix:
+        os: [ macos-latest, ubuntu-latest ]
+        formula: ${{fromJson(needs.get-formulae.outputs.formulae)}}
+    runs-on: ${{ matrix.os }}
+
+    steps:
+
+      - name: Set up Homebrew
+        id: set-up-homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Cache Homebrew Bundler RubyGems
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.set-up-homebrew.outputs.gems-path }}
+          key: ${{ runner.os }}-rubygems-${{ steps.set-up-homebrew.outputs.gems-hash }}
+          restore-keys: ${{ runner.os }}-rubygems-
+
+      - name: Install Homebrew Bundler RubyGems
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: brew install-bundler-gems
+
+      - name: Test formula ${{ matrix.formula }}
+        run: brew test-bot --only-formulae ${{ matrix.formula }}
