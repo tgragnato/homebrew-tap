@@ -40,3 +40,5 @@ jobs:
       - run: brew test-bot --only-tap-syntax
 
       - run: brew test-bot --only-formulae --root-url=https://ghcr.io/v2/tgragnato/tap amule
+
+      - run: brew test-bot --only-formulae --root-url=https://ghcr.io/v2/tgragnato/tap magnetico
