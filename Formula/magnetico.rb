@@ -18,6 +18,6 @@ class Magnetico < Formula
 
   test do
     system "go", "test", "./..."
-    system "#{bin}/magnetico", "--version"
+    system bin/"magnetico", "--help"
   end
 end
