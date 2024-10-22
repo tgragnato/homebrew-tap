@@ -2,8 +2,8 @@ class Jekyll < Formula
   desc "Simple, blog aware, static site generator"
   homepage "https://jekyllrb.com"
   url "https://github.com/jekyll/jekyll.git",
-    tag:      "v3.10.0",
-    revision: "715f33b874445a8e5d0adf36e0ffa67f7d7627d3"
+    tag:      "v4.3.4",
+    revision: "a09a8dea057a9d69c76cbb8cc602d167c7144c45"
   license "MIT"
 
   depends_on "ruby"
