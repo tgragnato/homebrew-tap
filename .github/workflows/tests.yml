@@ -55,7 +55,7 @@ jobs:
         with:
           script: |
             const { execSync } = require('child_process');
-            const formulae = execSync('find Formula -name "*.rb" -exec basename {} .rb \\;')
+            const formulae = execSync('find Formula -name "*.rb" ! -name "*@*.rb" -exec basename {} .rb \\;')
               .toString()
               .trim()
               .split('\n');
