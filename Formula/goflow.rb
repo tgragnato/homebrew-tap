@@ -2,8 +2,8 @@ class Goflow < Formula
   desc "High-scalability sFlow/NetFlow/IPFIX collector used internally at Cloudflare"
   homepage "https://github.com/tgragnato/goflow/"
   url "https://github.com/tgragnato/goflow.git",
-    tag:      "v0.2.0",
-    revision: "0eca2c61a6d5d68da4cc0a7264773624afb93437"
+    tag:      "v0.5.0",
+    revision: "52065c5d8decb2b7ed9b2163f5cda9989406600f"
   license "BSD-3-Clause"
 
   depends_on "go" => :build
