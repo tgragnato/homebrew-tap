@@ -8,7 +8,10 @@ class Magnetico < Formula
 
   depends_on "czmq" => :build
   depends_on "go" => :build
+  depends_on "libsodium" => :build
+  depends_on "lz4" => :build
   depends_on "pkg-config" => :build
+  depends_on "zeromq" => :build
 
   def install
     ENV["CGO_ENABLED"] = "1"
