@@ -11,7 +11,7 @@ class TerraformAT19 < Formula
   def install
     ENV["CGO_ENABLED"] = "0"
     ENV["GOPATH"] = buildpath
-    system "go", "build", *std_go_args, "-ldflags", "-s -w -X main.version=#{version}", "-o", bin/"terraform", "."
+    system "go", "build", *std_go_args, "-ldflags", "-s -w -X main.version=#{version}", "-o", bin/"terraform19", "."
   end
 
   test do
