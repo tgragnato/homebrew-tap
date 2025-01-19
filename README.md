@@ -56,7 +56,6 @@ brew tap tgragnato/tap
 brew install tgragnato/tap/amule
 brew install tgragnato/tap/goflow
 brew install tgragnato/tap/inca
-brew install tgragnato/tap/jekyll
 brew install tgragnato/tap/magnetico
 brew install tgragnato/tap/peephole
 brew install tgragnato/tap/snowflake-pt
