@@ -15,6 +15,6 @@ class TerraformAT19 < Formula
   end
 
   test do
-    system bin/"terraform", "--help"
+    system bin/"terraform19", "--help"
   end
 end
