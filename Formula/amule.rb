@@ -2,11 +2,12 @@ class Amule < Formula
   desc "'All-platform' P2P client based on eMule"
   homepage "https://github.com/tgragnato/amule"
   url "https://github.com/tgragnato/amule.git", branch: "main"
-  version "20241220"
+  version "20250413"
   license "GPL-2.0"
 
   depends_on "cmake" => [:build, :test]
   depends_on "gettext" => [:build, :test]
+  depends_on "boost"
   depends_on "cryptopp"
   depends_on "wxwidgets"
 
