@@ -2,7 +2,7 @@ class Vaban < Formula
   desc "Simple and Really Fast Varnish Cache Cluster Manager (for Varnish 6.x/7.x)"
   homepage "https://github.com/tgragnato/vaban/"
   url "https://github.com/tgragnato/vaban.git", branch: "main"
-  version "20241220"
+  version "20250525"
   license "MIT"
 
   depends_on "go" => :build
