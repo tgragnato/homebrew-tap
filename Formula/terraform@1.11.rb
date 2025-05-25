@@ -11,6 +11,7 @@ class TerraformAT111 < Formula
   def install
     ENV["CGO_ENABLED"] = "0"
     ENV["GOPATH"] = buildpath
+    inreplace "go.mod", "godebug tlskyber=0", "godebug tlsmlkem=0"
     system "go", "build", *std_go_args, "-ldflags", "-s -w -X main.version=#{version}", "-o", bin/"terraform111", "."
   end
 
