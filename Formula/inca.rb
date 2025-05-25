@@ -2,8 +2,8 @@ class Inca < Formula
   desc "API around internal and global Certificate Authority flows"
   homepage "https://github.com/immobiliare/inca/"
   url "https://github.com/immobiliare/inca.git",
-    tag:      "1.7.0",
-    revision: "df16c2bac76d48f07e10feb570f25019c0628107"
+    tag:      "1.7.2",
+    revision: "955e4ea88a62eee5ae9f7c074b3bcb21d5be309c"
   license "MIT"
 
   depends_on "go" => :build
