@@ -2,8 +2,8 @@ class Terraform < Formula
   desc "Automate infrastructure on any cloud with Terraform"
   homepage "https://www.terraform.io/"
   url "https://github.com/hashicorp/terraform.git",
-    tag:      "v1.11.3",
-    revision: "7ce537d5352f2a3346d55f69548f4fe6761b76ef"
+    tag:      "v1.12.1",
+    revision: "33aa0f719b08aa42217777a43df597eefabc4448"
   license "BUSL-1.1"
 
   depends_on "go" => :build
