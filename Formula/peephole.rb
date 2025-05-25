@@ -2,8 +2,8 @@ class Peephole < Formula
   desc "SaltStack transactions tracker"
   homepage "https://github.com/immobiliare/peephole/"
   url "https://github.com/immobiliare/peephole.git",
-    tag:      "0.5.0",
-    revision: "9f4f412d26e524d75482cdb33abd41251c68e570"
+    tag:      "0.5.1",
+    revision: "bc504466b2b0316e515734856640b1b24c50562f"
   license "MIT"
 
   depends_on "go" => :build
