@@ -56,9 +56,11 @@ brew tap tgragnato/tap
 brew install tgragnato/tap/amule
 brew install tgragnato/tap/goflow
 brew install tgragnato/tap/inca
+brew install tgragnato/tap/json-syslog
 brew install tgragnato/tap/magnetico
 brew install tgragnato/tap/peephole
 brew install tgragnato/tap/snowflake-pt
 brew install tgragnato/tap/terraform
 brew install tgragnato/tap/vaban
+brew install tgragnato/tap/whisper-to-graphite
 ```
