@@ -1,6 +1,6 @@
 class TerraformAT19 < Formula
   desc "Automate infrastructure on any cloud with Terraform"
-  homepage "https://www.terraform.io/"
+  homepage "https://github.com/hashicorp/terraform"
   url "https://github.com/hashicorp/terraform.git",
     tag:      "v1.9.8",
     revision: "e044e569c5bc81f82e9a4d7891f37c6fbb0a8a10"
