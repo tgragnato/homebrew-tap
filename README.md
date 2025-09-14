@@ -5,10 +5,10 @@ This is a custom Homebrew tap designed to provide access to formulae and softwar
 
 Currently, this tap is being used for:
 
--	Compiling a fork of aMule with opinionated patches that cannot be distributed upstream.
--	Building an updated version of Terraform, which Homebrew has declined to integrate due to license changes.
--	Installing Jekyll on the system without manual intervention via bundle and gem.
--	Distributing Magnetico, an autonomous (self-hosted) BitTorrent DHT search engine suite.
+- Compiling a fork of aMule with opinionated patches that cannot be distributed upstream.
+- Building an updated version of Terraform, which Homebrew has declined to integrate due to license changes.
+- Installing various utilities on the system without manual intervention.
+- Distributing Magnetico, an autonomous (self-hosted) BitTorrent DHT search engine suite.
 
 ## Usage
 
