@@ -13,12 +13,14 @@ jobs:
 
     name: Homebrew Test Bot (Syntax)
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
 
       - name: Set up Homebrew
         id: set-up-homebrew
-        uses: Homebrew/actions/setup-homebrew@master
+        uses: Homebrew/actions/setup-homebrew@main
 
       - name: Cache Homebrew Bundler RubyGems
         id: cache
@@ -42,6 +44,8 @@ jobs:
   get-formulae:
 
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     outputs:
       formulae: ${{ steps.get-formulae.outputs.formulae }}
 
@@ -65,6 +69,8 @@ jobs:
   test-formulae:
 
     name: Homebrew Test Bot (Formulae)
+    permissions:
+      contents: read
     needs: [test-bot, get-formulae]
     if: success()
     strategy:
@@ -77,7 +83,7 @@ jobs:
 
       - name: Set up Homebrew
         id: set-up-homebrew
-        uses: Homebrew/actions/setup-homebrew@master
+        uses: Homebrew/actions/setup-homebrew@main
 
       - name: Cache Homebrew Bundler RubyGems
         id: cache
@@ -91,5 +97,14 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: brew install-bundler-gems
 
+      - run: brew test-bot --only-cleanup-before
+
+      - run: brew test-bot --only-setup
+
       - name: Test formula ${{ matrix.formula }}
-        run: brew test-bot --only-formulae ${{ matrix.formula }}
+        env:
+          FORMULA: ${{ matrix.formula }}
+        run: brew test-bot --only-formulae "$FORMULA"
+
+      - run: brew test-bot --only-cleanup-after
+        if: always()
