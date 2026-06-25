@@ -2,8 +2,8 @@ class Magnetico < Formula
   desc "Autonomous (self-hosted) BitTorrent DHT search engine suite"
   homepage "https://github.com/tgragnato/magnetico/"
   url "https://github.com/tgragnato/magnetico.git",
-    tag:      "v2.3.0",
-    revision: "b60f573922b76fe78f39830fdc5d5cd52727ffe6"
+    tag:      "v2.4.0",
+    revision: "a763a2ec7a24fbe1a11711cda9a5be22aa2b23da"
   license "AGPL-3.0-only"
 
   depends_on "czmq" => :build
