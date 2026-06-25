@@ -1,17 +1,18 @@
 class Amule < Formula
   desc "'All-platform' P2P client based on eMule"
   homepage "https://github.com/amule-org/amule"
-  url "https://github.com/amule-org/amule/archive/refs/tags/3.0.1.tar.gz"
-  sha256 "29bb7694479417f55a1b1d04f3c98dff25853be14592fb0a1e49da1d93c143b3"
-  version "3.0.1"
   license "GPL-2.0"
 
-  head "https://github.com/tgragnato/amule.git", branch: "main"
-
   stable do
+    url "https://github.com/amule-org/amule/archive/refs/tags/3.0.1.tar.gz"
+    version "3.0.1"
+    sha256 "29bb7694479417f55a1b1d04f3c98dff25853be14592fb0a1e49da1d93c143b3"
+
     depends_on "libmaxminddb"
     depends_on "libupnp"
   end
+
+  head "https://github.com/tgragnato/amule.git", branch: "main"
 
   depends_on "cmake" => [:build, :test]
   depends_on "gettext" => [:build, :test]
