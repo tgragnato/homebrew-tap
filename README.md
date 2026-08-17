@@ -55,6 +55,7 @@ brew tap tgragnato/tap
 ```zsh
 brew install tgragnato/tap/amule
 brew install tgragnato/tap/goflow
+brew install tgragnato/tap/gotools
 brew install tgragnato/tap/inca
 brew install tgragnato/tap/json-syslog
 brew install tgragnato/tap/magnetico
