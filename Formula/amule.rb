@@ -2,7 +2,7 @@ class Amule < Formula
   desc "'All-platform' P2P client based on eMule"
   homepage "https://github.com/tgragnato/amule"
   url "https://github.com/tgragnato/amule.git", branch: "main"
-  version "20260713"
+  version "20260808"
   license "GPL-2.0"
 
   livecheck do
