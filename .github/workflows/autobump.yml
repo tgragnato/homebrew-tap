@@ -36,8 +36,6 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const fs = require('fs');
-            const { exec } = require('@actions/exec');
-            const { getExecOutput } = require('@actions/exec');
 
             const owner = context.repo.owner;
             const repo = context.repo.repo;
@@ -53,7 +51,7 @@ jobs:
               livecheckArgs.push('--tap', tap);
             }
 
-            const { stdout } = await getExecOutput('brew', livecheckArgs, { silent: true });
+            const { stdout } = await exec.getExecOutput('brew', livecheckArgs, { silent: true });
             const outdated = JSON.parse(stdout || '[]');
             core.info(`Found ${outdated.length} outdated formula(e)`);
 
@@ -63,7 +61,7 @@ jobs:
 
               if (!isDateBased) {
                 core.info(`[tag] bumping ${formula} ${current} -> ${latest}`);
-                await exec('brew', [
+                await exec.exec('brew', [
                   'bump-formula-pr', '--no-audit', '--no-browse',
                   '--message', `build(${formula}): bump from version ${current} to version ${latest}`,
                   `${tap}/${formula}`,
@@ -79,10 +77,10 @@ jobs:
                 ));
 
                 const branch = `bump/${formula}-${latest}`;
-                await exec('git', ['checkout', '-b', branch]);
-                await exec('git', ['add', filePath]);
-                await exec('git', ['commit', '-m', `build(${formula}): bump from version ${current} to version ${latest}`]);
-                await exec('git', ['push', 'origin', branch]);
+                await exec.exec('git', ['checkout', '-b', branch]);
+                await exec.exec('git', ['add', filePath]);
+                await exec.exec('git', ['commit', '-m', `build(${formula}): bump from version ${current} to version ${latest}`]);
+                await exec.exec('git', ['push', 'origin', branch]);
 
                 await github.rest.pulls.create({
                   owner,
@@ -93,6 +91,6 @@ jobs:
                   base: 'main',
                 });
 
-                await exec('git', ['checkout', '-']);
+                await exec.exec('git', ['checkout', '-']);
               }
             }
