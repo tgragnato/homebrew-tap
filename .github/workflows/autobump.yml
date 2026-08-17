@@ -1,0 +1,98 @@
+name: Bump formulae
+
+on:
+  schedule:
+    - cron: "37 14 * * 0"
+  workflow_dispatch:
+    inputs:
+      formulae:
+        description: "Formula to bump (leave empty for all)"
+        required: false
+
+jobs:
+  autobump:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@main
+
+      - name: Configure Git user
+        uses: Homebrew/actions/git-user-config@main
+        with:
+          username: tgragnato
+
+      - name: Checkout tap
+        uses: actions/checkout@v7
+
+      - name: Bump formulae
+        uses: actions/github-script@v9
+        env:
+          HOMEBREW_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs');
+            const { exec } = require('@actions/exec');
+            const { getExecOutput } = require('@actions/exec');
+
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const tap = `${owner}/${repo.replace(/^homebrew-/, '')}`;
+            const inputFormula = '${{ inputs.formulae }}';
+
+            const livecheckArgs = [
+              'livecheck', '--newer-only', '--quiet', '--formula', '--json',
+            ];
+            if (inputFormula) {
+              livecheckArgs.push(`${tap}/${inputFormula}`);
+            } else {
+              livecheckArgs.push('--tap', tap);
+            }
+
+            const { stdout } = await getExecOutput('brew', livecheckArgs, { silent: true });
+            const outdated = JSON.parse(stdout || '[]');
+            core.info(`Found ${outdated.length} outdated formula(e)`);
+
+            for (const item of outdated) {
+              const { formula, version: { current, latest } } = item;
+              const isDateBased = /^\d{8}$/.test(latest);
+
+              if (!isDateBased) {
+                core.info(`[tag] bumping ${formula} ${current} -> ${latest}`);
+                await exec('brew', [
+                  'bump-formula-pr', '--no-audit', '--no-browse',
+                  '--message', `build(${formula}): bump from version ${current} to version ${latest}`,
+                  `${tap}/${formula}`,
+                ]).catch(e => core.warning(`bump-formula-pr failed for ${formula}: ${e.message}`));
+              } else {
+                core.info(`[branch] bumping ${formula} ${current} -> ${latest}`);
+
+                const filePath = `Formula/${formula}.rb`;
+                const content = fs.readFileSync(filePath, 'utf8');
+                fs.writeFileSync(filePath, content.replace(
+                  `version "${current}"`,
+                  `version "${latest}"`,
+                ));
+
+                const branch = `bump/${formula}-${latest}`;
+                await exec('git', ['checkout', '-b', branch]);
+                await exec('git', ['add', filePath]);
+                await exec('git', ['commit', '-m', `build(${formula}): bump from version ${current} to version ${latest}`]);
+                await exec('git', ['push', 'origin', branch]);
+
+                await github.rest.pulls.create({
+                  owner,
+                  repo,
+                  title: `bump ${formula} to ${latest}`,
+                  body: `Automated version bump of \`${formula}\` from \`${current}\` to \`${latest}\`.`,
+                  head: branch,
+                  base: 'main',
+                });
+
+                await exec('git', ['checkout', '-']);
+              }
+            }

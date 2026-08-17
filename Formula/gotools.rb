@@ -5,6 +5,11 @@ class Gotools < Formula
   sha256 "df7f087706730d85ced76f5f2e3d1a51703de3beb305acc72d1170d405f5a21e"
   license "BSD-3-Clause"
 
+  livecheck do
+    url :stable
+    regex(/^v?(\d+(?:\.\d+)+)$/i)
+  end
+
   depends_on "go" => :build
 
   def install

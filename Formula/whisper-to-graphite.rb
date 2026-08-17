@@ -5,6 +5,13 @@ class WhisperToGraphite < Formula
   version "20250525"
   license "MIT"
 
+  livecheck do
+    url "https://api.github.com/repos/tgragnato/whisper-to-graphite/commits/main"
+    strategy :json do |json|
+      json["commit"]["committer"]["date"][0, 10].delete("-")
+    end
+  end
+
   depends_on "go" => :build
 
   def install

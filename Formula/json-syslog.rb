@@ -5,6 +5,13 @@ class JsonSyslog < Formula
   version "20250525"
   license "AGPL-3.0-only"
 
+  livecheck do
+    url "https://api.github.com/repos/tgragnato/json-syslog/commits/main"
+    strategy :json do |json|
+      json["commit"]["committer"]["date"][0, 10].delete("-")
+    end
+  end
+
   depends_on "go" => :build
 
   def install

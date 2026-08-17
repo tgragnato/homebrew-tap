@@ -5,6 +5,13 @@ class Amule < Formula
   version "20260713"
   license "GPL-2.0"
 
+  livecheck do
+    url "https://api.github.com/repos/tgragnato/amule/commits/main"
+    strategy :json do |json|
+      json["commit"]["committer"]["date"][0, 10].delete("-")
+    end
+  end
+
   depends_on "cmake" => [:build, :test]
   depends_on "gettext" => [:build, :test]
   depends_on "boost"
