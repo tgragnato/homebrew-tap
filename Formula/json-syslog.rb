@@ -2,7 +2,7 @@ class JsonSyslog < Formula
   desc "Validator for JSON syslog messages"
   homepage "https://github.com/tgragnato/json-syslog/"
   url "https://github.com/tgragnato/json-syslog.git", branch: "main"
-  version "20250525"
+  version "20260808"
   license "AGPL-3.0-only"
 
   livecheck do
