@@ -79,7 +79,7 @@ jobs:
                 const branch = `bump/${formula}-${latest}`;
                 await exec.exec('git', ['checkout', '-b', branch]);
                 await exec.exec('git', ['add', filePath]);
-                await exec.exec('git', ['commit', '-m', `build(${formula}): bump from version ${current} to version ${latest}`]);
+                await exec.exec('git', ['commit', '-m', `build(${formula}): bump ${formula} from version ${current} to version ${latest}`]);
                 await exec.exec('git', ['push', 'origin', branch]);
 
                 await github.rest.pulls.create({
