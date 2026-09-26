@@ -1,6 +1,10 @@
 
 # tgragnato/homebrew-tap
 
+[![brew test-bot](https://github.com/tgragnato/homebrew-tap/actions/workflows/tests.yml/badge.svg)](https://github.com/tgragnato/homebrew-tap/actions/workflows/tests.yml)
+[![Bump formulae](https://github.com/tgragnato/homebrew-tap/actions/workflows/autobump.yml/badge.svg)](https://github.com/tgragnato/homebrew-tap/actions/workflows/autobump.yml)
+[![commit-lint](https://github.com/tgragnato/homebrew-tap/actions/workflows/commit-lint.yml/badge.svg)](https://github.com/tgragnato/homebrew-tap/actions/workflows/commit-lint.yml)
+
 This is a custom Homebrew tap designed to provide access to formulae and software  that are not available in the official Homebrew repositories.
 
 Currently, this tap is being used for:
