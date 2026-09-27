@@ -1,5 +1,5 @@
 class GraphiteStresser < Formula
-  desc "A stress testing tool for Graphite"
+  desc "Stress testing tool for Graphite"
   homepage "https://github.com/tgragnato/graphite-stresser"
   url "https://github.com/tgragnato/graphite-stresser.git", branch: "main"
   version "20260927"
@@ -22,7 +22,7 @@ class GraphiteStresser < Formula
   end
 
   test do
-    output = shell_output("#{bin}/graphite-stresser 2>&1", 0)
-    assert output.include?("Usage:")
+    output = shell_output("#{bin}/graphite-stresser 2>&1")
+    assert_match "Usage:", output
   end
 end
