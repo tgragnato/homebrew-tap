@@ -58,6 +58,7 @@ brew tap tgragnato/tap
 
 ```zsh
 brew install tgragnato/tap/amule
+brew install tgragnato/tap/dx-cli
 brew install tgragnato/tap/goflow
 brew install tgragnato/tap/gotools
 brew install tgragnato/tap/inca
