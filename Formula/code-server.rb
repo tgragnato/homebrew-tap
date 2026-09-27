@@ -6,7 +6,7 @@ class CodeServer < Formula
   license "MIT"
 
   livecheck do
-    url "https://registry.npmjs.org/@code-server"
+    url "https://registry.npmjs.org/code-server"
     strategy :json do |json|
       json["dist-tags"]&.[]("latest")
     end

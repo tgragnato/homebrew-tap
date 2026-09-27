@@ -1,0 +1,5 @@
+bottle_output.txt
+linkage_output.txt
+skipped_or_failed_formulae-*.txt
+steps_output.txt
+*.bottle.*
