@@ -2,7 +2,7 @@ class Orbiter < Formula
   desc "Read and send metrics from whisper files to Graphite"
   homepage "https://github.com/tgragnato/orbiter/"
   url "https://github.com/tgragnato/orbiter.git", branch: "main"
-  version "20260927"
+  version "20260930"
   license "AGPL-3.0-only"
 
   livecheck do
