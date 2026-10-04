@@ -2,7 +2,7 @@ class GraphiteStresser < Formula
   desc "Stress testing tool for Graphite"
   homepage "https://github.com/tgragnato/graphite-stresser"
   url "https://github.com/tgragnato/graphite-stresser.git", branch: "main"
-  version "20260927"
+  version "20261004"
   license :cannot_represent
 
   livecheck do
