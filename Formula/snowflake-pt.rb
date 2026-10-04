@@ -2,7 +2,7 @@ class SnowflakePt < Formula
   desc "WebRTC Pluggable Transport"
   homepage "https://github.com/tgragnato/snowflake/"
   url "https://github.com/tgragnato/snowflake.git", branch: "main"
-  version "20260926"
+  version "20261004"
   license "BSD-3-Clause"
 
   livecheck do
