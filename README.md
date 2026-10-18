@@ -64,7 +64,6 @@ brew install tgragnato/tap/goflow
 brew install tgragnato/tap/gotools
 brew install tgragnato/tap/graphite-stresser
 brew install tgragnato/tap/inca
-brew install tgragnato/tap/json-syslog
 brew install tgragnato/tap/magnetico
 brew install tgragnato/tap/orbiter
 brew install tgragnato/tap/peephole
