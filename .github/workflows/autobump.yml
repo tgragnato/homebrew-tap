@@ -63,6 +63,7 @@ jobs:
                 core.info(`[tag] bumping ${formula} ${current} -> ${latest}`);
                 await exec.exec('brew', [
                   'bump-formula-pr', '--no-audit', '--no-browse',
+                  `--version=${latest}`,
                   '--message', `build(${formula}): bump from version ${current} to version ${latest}`,
                   `${tap}/${formula}`,
                 ]).catch(e => core.warning(`bump-formula-pr failed for ${formula}: ${e.message}`));
@@ -71,10 +72,11 @@ jobs:
 
                 const filePath = `Formula/${formula}.rb`;
                 const content = fs.readFileSync(filePath, 'utf8');
-                fs.writeFileSync(filePath, content.replace(
-                  `version "${current}"`,
-                  `version "${latest}"`,
-                ));
+                const gitUrl = content.match(/url "(\S+\.git)"/)[1];
+                const { stdout: heads } = await exec.getExecOutput('git', ['ls-remote', gitUrl, 'refs/heads/main'], { silent: true });
+                fs.writeFileSync(filePath, content
+                  .replace(`version "${current}"`, `version "${latest}"`)
+                  .replace(/revision: "[0-9a-f]{40}"/, `revision: "${heads.split('\t')[0]}"`));
 
                 const branch = `bump/${formula}-${latest}`;
                 await exec.exec('git', ['checkout', '-b', branch]);

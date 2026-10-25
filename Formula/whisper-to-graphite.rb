@@ -1,7 +1,9 @@
 class WhisperToGraphite < Formula
   desc "Read and send metrics from whisper files to Graphite"
   homepage "https://github.com/tgragnato/whisper-to-graphite/"
-  url "https://github.com/tgragnato/whisper-to-graphite.git", branch: "main"
+  url "https://github.com/tgragnato/whisper-to-graphite.git",
+    branch:   "main",
+    revision: "95f5e30741d1726fa5d2053a3e88faf033a502c6"
   version "20260928"
   license "MIT"
 

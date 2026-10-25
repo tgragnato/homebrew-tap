@@ -1,7 +1,9 @@
 class GraphiteStresser < Formula
   desc "Stress testing tool for Graphite"
   homepage "https://github.com/tgragnato/graphite-stresser"
-  url "https://github.com/tgragnato/graphite-stresser.git", branch: "main"
+  url "https://github.com/tgragnato/graphite-stresser.git",
+    branch:   "main",
+    revision: "3802427d6b5b9a2b6b9fcae46d7ff1b595f9903e"
   version "20261010"
   license :cannot_represent
 

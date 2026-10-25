@@ -1,7 +1,9 @@
 class SnowflakePt < Formula
   desc "WebRTC Pluggable Transport"
   homepage "https://github.com/tgragnato/snowflake/"
-  url "https://github.com/tgragnato/snowflake.git", branch: "main"
+  url "https://github.com/tgragnato/snowflake.git",
+    branch:   "main",
+    revision: "2e57a547a2760874df22038b5ba92766e6657e9a"
   version "20261017"
   license "BSD-3-Clause"
 
