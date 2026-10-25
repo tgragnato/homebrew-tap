@@ -59,6 +59,7 @@ brew tap tgragnato/tap
 ```zsh
 brew install tgragnato/tap/amule
 brew install tgragnato/tap/code-server
+brew install tgragnato/tap/derp418
 brew install tgragnato/tap/dx-cli
 brew install tgragnato/tap/goflow
 brew install tgragnato/tap/gotools
