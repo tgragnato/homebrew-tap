@@ -1,8 +1,8 @@
 class Gotools < Formula
   desc "Tools for working with Go source code"
   homepage "https://pkg.go.dev/golang.org/x/tools"
-  url "https://github.com/golang/tools/archive/refs/tags/v0.49.0.tar.gz"
-  sha256 "df7f087706730d85ced76f5f2e3d1a51703de3beb305acc72d1170d405f5a21e"
+  url "https://github.com/golang/tools/archive/refs/tags/v0.52.0.tar.gz"
+  sha256 "52846a0ad92cde47a8ed152c5f1908f81daa93114c8fa5c10a8f19352af1a1d9"
   license "BSD-3-Clause"
 
   livecheck do
