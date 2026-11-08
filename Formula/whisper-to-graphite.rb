@@ -3,8 +3,8 @@ class WhisperToGraphite < Formula
   homepage "https://github.com/tgragnato/whisper-to-graphite/"
   url "https://github.com/tgragnato/whisper-to-graphite.git",
     branch:   "main",
-    revision: "95f5e30741d1726fa5d2053a3e88faf033a502c6"
-  version "20260928"
+    revision: "2560b68a028d09f3af8831f052aec800b7d27f6e"
+  version "20261103"
   license "MIT"
 
   livecheck do
