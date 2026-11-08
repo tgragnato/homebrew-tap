@@ -3,8 +3,8 @@ class SnowflakePt < Formula
   homepage "https://github.com/tgragnato/snowflake/"
   url "https://github.com/tgragnato/snowflake.git",
     branch:   "main",
-    revision: "032684e7210c5c2a9257b96a38b316083b3232ed"
-  version "20261030"
+    revision: "8796e7dc4501bc2828c0d2d3dd7f082c0462aad7"
+  version "20261108"
   license "BSD-3-Clause"
 
   livecheck do
