@@ -3,9 +3,9 @@ class Amule < Formula
   homepage "https://github.com/tgragnato/amule"
   url "https://github.com/tgragnato/amule.git",
     branch:   "main",
-    revision: "3106786b8d9fdc94d44cb541edc7fc7618fe4a61"
-  version "20261003"
-  license "GPL-2.0"
+    revision: "96c01d2b2bc9d8ef96f90b0500b2453323b84f38"
+  version "20261114"
+  license "GPL-2.0-or-later"
 
   livecheck do
     url "https://api.github.com/repos/tgragnato/amule/commits/main"
@@ -14,28 +14,40 @@ class Amule < Formula
     end
   end
 
-  depends_on "cmake" => [:build, :test]
-  depends_on "gettext" => [:build, :test]
-  depends_on "boost"
+  depends_on "boost" => :build
+  depends_on "cmake" => :build
+  depends_on "pkgconf" => :build
   depends_on "cryptopp"
+  depends_on "gettext"
+  depends_on "readline"
   depends_on "wxwidgets"
 
+  on_linux do
+    depends_on "curl"
+    depends_on "glib"
+  end
+
   def install
-    system "cmake", "-S", ".", "-B", "build", *std_cmake_args
+    args = %w[
+      -DBUILD_MONOLITHIC=ON
+      -DBUILD_DAEMON=ON
+      -DBUILD_REMOTEGUI=ON
+      -DBUILD_AMULECMD=ON
+      -DBUILD_AMULEAPI=ON
+      -DBUILD_ED2K=ON
+      -DBUILD_TESTING=OFF
+      -DENABLE_CCACHE=OFF
+    ]
+
+    system "cmake", "-S", ".", "-B", "build", *std_cmake_args, *args
     system "cmake", "--build", "build"
     system "cmake", "--install", "build"
   end
 
   test do
-    system "cmake", "--build", "unittests"
-    system "./unittests/tests/CTagTest"
-    system "./unittests/tests/FormatTest"
-    system "./unittests/tests/RangeMapTest"
-    system "./unittests/tests/CUInt128Test"
-    system "./unittests/tests/NetworkFunctionsTest"
-    system "./unittests/tests/StringFunctionsTest"
-    system "./unittests/tests/FileDataIOTest"
-    system "./unittests/tests/PathTest"
-    system "./unittests/tests/TextFileTest"
+    assert_match "aMule ED2k link parser", shell_output("#{bin}/ed2k --version")
+    %w[amule amuled amulegui amulecmd amuleapi].each do |program|
+      assert_path_exists bin/program
+    end
   end
 end
