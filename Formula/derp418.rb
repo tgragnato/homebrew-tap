@@ -3,8 +3,8 @@ class Derp418 < Formula
   homepage "https://github.com/tgragnato/Derp418/"
   url "https://github.com/tgragnato/Derp418.git",
     branch:   "main",
-    revision: "f8353fe625f8601b275b8dd9695fe78b4b902b82"
-  version "20261106"
+    revision: "6d7680ec282067a46e566195cb4c21c11dd72d5a"
+  version "20261113"
   license "AGPL-3.0-only"
 
   livecheck do
