@@ -3,8 +3,8 @@ class GraphiteStresser < Formula
   homepage "https://github.com/tgragnato/graphite-stresser"
   url "https://github.com/tgragnato/graphite-stresser.git",
     branch:   "main",
-    revision: "15ee6cd953b339262a6ac57d9d14b3a033075933"
-  version "20261106"
+    revision: "62dac97b9c470e8c669e84c0e4b11b0fa88fc312"
+  version "20261109"
   license :cannot_represent
 
   livecheck do
