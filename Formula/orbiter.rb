@@ -3,8 +3,8 @@ class Orbiter < Formula
   homepage "https://github.com/tgragnato/orbiter/"
   url "https://github.com/tgragnato/orbiter.git",
     branch:   "main",
-    revision: "155c5967f569966fed69aedbdf275aff546218ab"
-  version "20261112"
+    revision: "cccf160986b9902805c6fe554442be5ff7878727"
+  version "20261119"
   license "AGPL-3.0-only"
 
   livecheck do
